@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <title>Donor SignUp</title>
+    <style>
+        body {
+            background: url('https://images.pexels.com/photos/3255761/pexels-photo-3255761.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') center center/cover;
+        }
+
+        input[type=text],
+        input[type=password] {
+            background-color: white;
+            color: black;
+            width: 11cm;
+            height: 2rem;
+            padding: 8px 20px;
+            margin-bottom: 11px;
+            margin-top: 3px;
+            border-radius: 9px;
+            border-color: black;
+            font-size: 1rem;
+        }
+        .container{
+            width:auto;
+            margin:2rem auto;
+        }
+        #button1 {
+            background-color: rgb(39, 107, 170);
+            color: white;
+            width: 11cm;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 9px;
+            margin: 20px 1px;
+            font-size: 17px;
+        }
+        .container h1{
+            text-align: center;
+            margin-bottom:1rem;
+        }
+    #button1:hover{
+        background-color: rgb(51, 129, 165);
+        color:black;
+    }
+    label{
+        margin-bottom:0;
+        margin-top:0.5rem;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Message Modal -->
+    {% for message in messages %}
+    <div class="modal fade" id="messageModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Message</h5>
+                    {% if message.tags == 'success' %}
+                    <a class="close"  href="../" >
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+                    {% else %}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {% endif %}
+                </div>
+                <div class="modal-body">
+                    <h5>
+                        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                            <strong>Message: </strong> {{message}} 
+                            {% comment %} {% if message.tags == 'success' %}
+                            <a class="close"  href="../">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                            {% else %} {% endcomment %}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {% comment %} {% endif %} {% endcomment %}
+                        </div>
+                    </h5>
+                </div>
+                <div class="modal-footer">
+                    {% if message.tags == 'success' %}
+                    <a class="btn btn-secondary" href="../">OK</a>
+                    {% else %}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        OK
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Message Modal ENd  --> 
+    {% comment %} Sign Up Form {% endcomment %}
+   <form action="/DonorSignUp/" method="post">
+     {% csrf_token %}
+        <div id="template" class="container" style="height: 10cm; width: 11.5cm">
+            <h1>Donor SignUp</h1>
+            <div >
+                <label for="name">FIRST NAME</label>
+                <input type="text" placeholder="Enter First Name" name="fname" required>
+                <label for="name">LAST NAME</label>
+                <input type="text" placeholder="Enter Last Name" name="lname" required>
+                <label for="username">USERNAME</label>
+                <input type="text" placeholder="Enter Username" name="username" required>
+                <label for="pswd">PASSWORD</label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+                <label for="pswd">CONFIRM PASSWORD</label>
+                <input type="password" placeholder="Enter Password Again" name="cpassword" required>
+                <div >
+                    <button id="button1" class="btn" type="submit"><b>Submit</b></button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+    {% comment %} Sign Up Form END  {% endcomment %}
+
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        //JQuery to Activate the Message Modal
+        $("#messageModal").modal("show");
+    </script>
+</body>
+
+</html>

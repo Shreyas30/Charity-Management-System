@@ -1,0 +1,84 @@
+{% extends 'basic.html' %}
+
+{% block title %} Home {% endblock title %}
+        
+{% block css %}
+
+ body {
+            font-family: 'Rubik', sans-serif;
+}
+
+/* Contact section */
+
+#contact::before {
+    content: "";
+    position: absolute;
+    height: 667px;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    {% comment %} background: url("/static/contact.jpg") no-repeat center center/cover; {% endcomment %}
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("https://st2.depositphotos.com/1265075/7446/i/600/depositphotos_74468913-stock-photo-contact-us-icons-on-cubes.jpg") no-repeat center center/cover;
+    opacity: 0.3;
+    z-index: -1
+}
+
+.heading {
+    text-align: center;
+    color: #1b5250;
+    text-shadow: 0 2px 4px darkcyan;
+}
+
+/* FOOTER */
+.footer {
+    background-color: black;
+    margin-top: 50px;
+    height: 85vh;
+    color: white;
+}
+
+.contact-logo {
+    display: flex;
+    flex-direction: column;
+}
+#contact{
+    margin: 9.1rem auto;
+}
+/* UTILITY  */
+.center {
+    text-align: center;
+
+}
+
+hr {
+    background-color: white;
+    width: 83%;
+    margin-top: 2rem;
+}
+
+{% endblock css%}
+
+{% block body%}
+ <div class="container w-50" id="contact">
+        <h2 class="heading">Contact Us</h2>
+        <form action="/Message/" method="POST">{% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlInputName"><b>Name:</b></label>
+                <input type="text" class="form-control" name="name" id="exampleFormControlInputName" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1"><b>Email address:</b></label>
+                <input type="email" class="form-control" name="email" id="exampleFormControlInput1"
+                    placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1"><b>Message:</b></label>
+                <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button class="btn btn-success mt-4">
+                Submit
+            </button>
+        </form>
+    </div>
+
+{% endblock body%}

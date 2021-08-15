@@ -1,0 +1,85 @@
+{% extends 'basic.html' %}
+
+{% block title %} About Us {% endblock title %}
+
+{% block css %}
+
+/* About section */
+
+.introHeading {
+font-size: 4em;
+margin-top: 4rem;
+font-family: 'Big Shoulders Stencil Text', cursive;
+}
+
+.introPara {
+font-family: 'Source Code Pro', monospace;
+font-size: 1.7em;
+color: darkcyan;
+padding: 0px 14px;
+background: #cbf3f3;
+}
+
+img{
+    border-radius: 15px;
+}
+
+.col-md-7{
+    margin-top:1rem;
+}
+{% endblock css %}
+
+{% block body %}
+<div class="container">
+    <h1 class="introHeading">Who We Are</h1>
+    <p class="introPara">One Of The Largest Portal For Helping The Ones In Need</p>
+
+    <div class="container marketing">
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 pl-4">
+                <h2 class="featurette-heading">Helping Hands</h2>
+                <p class="lead">Back in 2010, we started this Portal in order to give help to the people who poor & needy and unable to fulfil their basic necessities of life.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img class='border border-dark' src="https://pbs.twimg.com/profile_images/983464808996593665/zA4FsjvP_400x400.jpg" width="400" height="400" alt="Discussion">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading"> Connecting People </h2>
+                <p class="lead">
+                    By our Portal different Charities are Connected directly to the people who are ready to give financial Help for their Charity as well as The people who want to help others are connected to Different Charities to which they can donate.
+                </p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class='border border-dark' src="https://st2.depositphotos.com/1309454/5540/v/600/depositphotos_55407255-stock-illustration-social-media-background.jpg" width="400" height="400" alt="Discussion">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading"> Encouraging People to Help Others </h2>
+                <p class="lead">
+                    By our portal, lot of people were encouraged for helping poor people. Many new Charities and Donors connceted with us and together we helped others as well as encouraged people for taking part in it.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img  class='border border-dark' src="https://charterforcompassion.org/images/menus/dreamstime_s_51218280.jpg" width="400" height="400" alt="Discussion">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- /END THE FEATURETTES -->
+
+    </div><!-- /.container -->
+</div>
+{% endblock body %}

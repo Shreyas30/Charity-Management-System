@@ -1,0 +1,166 @@
+{% extends 'basic.html' %}
+
+{% block title %} {{ Charity.name }} {% endblock title %}
+
+{% block css %}
+
+.col {
+<!-- border: 2px solid black; -->
+width: 45%;
+margin: 6rem;
+margin-bottom:7rem;
+background-color: #edf2fb;
+border-radius: 15px;
+}
+
+.wrapper {
+/* position: absolute; */
+top: 2rem;
+left: 45rem;
+/* transform: translate(2%,2%); */
+/* border: 1px solid rgb(170, 227, 241);
+border-radius: 20%; */
+
+}
+
+input {
+text-align: center;
+background-color: white;
+color: black;
+width: 19rem;
+padding: 3px 3px;
+margin: 4px 0px;
+border-radius: 10px;
+border-color: black;
+font-size: 1rem;
+}
+
+.submit {
+padding: 3px 3px;
+border-radius: 10px;
+background-color: black;
+color: white;
+margin: 4px 0px;
+width: 10rem;
+}
+
+h1 {
+text-align: left;
+}
+
+form .row{
+margin:1rem;
+font-size:1.3rem;
+}
+
+#image {
+height: 12rem;
+width: 24rem;
+border-radius: 15px;
+
+margin-top: 1px;
+}
+h3{
+font-size: 22px;
+margin-top: 20px;
+}
+h1{
+margin-top: 15px;
+}
+
+form h1{
+padding-left:1.5rem;
+}
+
+#left-section{
+padding-left:3rem;
+}
+
+#right-section{
+border:1px solid #bdbdec;
+}
+
+#left-section h1{
+margin:0;
+margin-bottom:1rem;
+}
+
+.cen input{
+margin: 1rem 8rem;
+}
+
+.cen input:hover{
+background-color:#cecaca;
+color:black;
+}
+{% endblock css %}
+
+{% block body %}
+
+<div class="container" style="height: 90%">
+    <div class="row">
+        <div class="col bg-light" id='left-section'>
+            <!-- Left Side -->
+
+            <h1>{{Charity.name}}</h1>
+            <div id="circle">
+                <img src="/media/{{Charity.image}}" class="img-fluid z-depth-1" id="image" alt="Profile">
+            </div>
+
+            <h3><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-people"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+                </svg> Till date {{Charity.donors}} people have happily donated</h3>
+            <h3><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-clipboard-data" viewBox="0 0 16 16">
+                    <path
+                        d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
+                    <path
+                        d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                    <path
+                        d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                </svg> A total amount of {{Charity.amount}} is being donated by these people</h3>
+        </div>
+        <div class="col ml-5" id='right-section'>
+            <!-- Right Side -->
+            <div class="wrapper">
+
+                <div class="form" >
+
+                    <form action="/Payment/" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="username" value="{{request.user.username}}">
+                        <input type="hidden" name="charityusername" value="{{Charity.username}}">
+                        <h1>Donation</h1>
+                        <div class='row'>
+                            <div class="col-5">Name</div>
+                            <div class="col-7"><b>{{request.user.first_name}} {{request.user.last_name}}</b></div>
+                        </div>
+                        <div class='row'>
+                            <div class="col-5">Charity Name</div>
+                            <div class="col-7"><b>{{Charity.name}}</b></div>
+                        </div>
+                        <div class='row'>
+                            <label class='col-5' for="name">Card No</label>
+                            <input class='col-7' type="text" placeholder="Enter Card No" name="cardno" required>
+                        </div>
+                        <div class='row'>
+                            <label class='col-5' for="username">CVV</label>
+                            <input class='col-7' type="password" placeholder="Enter CVV" name="cvv" required>
+                        </div>
+                        <div class='row'>
+                            <label class='col-5' for="pswd">Amount</label>
+                            <input class='col-7' type="text" placeholder="Enter Amount" name="amount" required>
+                        </div>
+                        <div class="cen">
+                            <input type="submit" name="Submit" value="Submit" class="submit">
+                        </div>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
